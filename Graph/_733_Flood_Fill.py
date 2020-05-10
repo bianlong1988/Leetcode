@@ -13,6 +13,10 @@ Output: [[2,2,2],[2,2,0],[2,0,1]]
 [1,1,0]
 [1,0,1]
 """
+# Difference compare to other problem: do not need additional list to keep tracking the connection.
+# -> no for loop needed, no disconnection in the matrix, will visit all the (r, c).
+
+
 # Option 3: Recursive
 class Solution3(object):
     def floodFill(self, image, sr, sc, newColor):
@@ -31,12 +35,15 @@ class Solution3(object):
 
     def dfs(self, r, c, image, oldColor, newColor):
         R, C = len(image), len(image[0])
-        if image[r][c] == oldColor:
-            image[r][c] = newColor
-            if r >= 1: self.dfs(r - 1, c, image, oldColor, newColor)
-            if r + 1 < R: self.dfs(r + 1, c, image, oldColor, newColor)
-            if c >= 1: self.dfs(r, c - 1, image, oldColor, newColor)
-            if c + 1 < C: self.dfs(r, c + 1, image, oldColor, newColor)
+        # base case
+        if r < 0 or r >= R or c < 0 or c >= C or image[r][c] != oldColor:
+            return
+        image[r][c] = newColor
+        # recursive calls
+        self.dfs(r - 1, c, image, oldColor, newColor)
+        self.dfs(r + 1, c, image, oldColor, newColor)
+        self.dfs(r, c - 1, image, oldColor, newColor)
+        self.dfs(r, c + 1, image, oldColor, newColor)
 
 
 
@@ -104,5 +111,5 @@ class Solution2(object):
                     queue.append((r, c - 1))
         return image
 
-solution = Solution1()
+solution = Solution3()
 print solution.floodFill([[1,1,1],[1,1,0],[1,0,1]], 1,1,2)
