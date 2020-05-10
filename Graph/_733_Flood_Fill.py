@@ -23,23 +23,20 @@ class Solution3(object):
         :type newColor: int
         :rtype: List[List[int]]
         """
-        len_r, len_c = len(image), len(image[0])
         oldColor = image[sr][sc]
         if oldColor == newColor:
             return image
         self.dfs(sr, sc, image, oldColor, newColor)
         return image
-    def dfs(self, row, col, image, oldColor, newColor):
-        if image[row][col] == oldColor:
-            image[row][col] = newColor
-        if row + 1 < len(image):
-            self.dfs(row + 1, col, image, oldColor, newColor)
-        if row - 1 >= 0:
-            self.dfs(row - 1, col, image, oldColor, newColor)
-        if col + 1 < len(image[0]):
-            self.dfs(row, col + 1, image, oldColor, newColor)
-        if col - 1 > 0:
-            self.dfs(row, col - 1, image, oldColor, newColor)
+
+    def dfs(self, r, c, image, oldColor, newColor):
+        R, C = len(image), len(image[0])
+        if image[r][c] == oldColor:
+            image[r][c] = newColor
+            if r >= 1: self.dfs(r - 1, c, image, oldColor, newColor)
+            if r + 1 < R: self.dfs(r + 1, c, image, oldColor, newColor)
+            if c >= 1: self.dfs(r, c - 1, image, oldColor, newColor)
+            if c + 1 < C: self.dfs(r, c + 1, image, oldColor, newColor)
 
 
 
