@@ -13,6 +13,35 @@ Output: [[2,2,2],[2,2,0],[2,0,1]]
 [1,1,0]
 [1,0,1]
 """
+# Option 3: Recursive
+class Solution3(object):
+    def floodFill(self, image, sr, sc, newColor):
+        """
+        :type image: List[List[int]]
+        :type sr: int
+        :type sc: int
+        :type newColor: int
+        :rtype: List[List[int]]
+        """
+        len_r, len_c = len(image), len(image[0])
+        oldColor = image[sr][sc]
+        if oldColor == newColor:
+            return image
+        self.dfs(sr, sc, image, oldColor, newColor)
+        return image
+    def dfs(self, row, col, image, oldColor, newColor):
+        if image[row][col] == oldColor:
+            image[row][col] = newColor
+        if row + 1 < len(image):
+            self.dfs(row + 1, col, image, oldColor, newColor)
+        if row - 1 >= 0:
+            self.dfs(row - 1, col, image, oldColor, newColor)
+        if col + 1 < len(image[0]):
+            self.dfs(row, col + 1, image, oldColor, newColor)
+        if col - 1 > 0:
+            self.dfs(row, col - 1, image, oldColor, newColor)
+
+
 
 # Option 1: iteration DFS
 class Solution1(object):
