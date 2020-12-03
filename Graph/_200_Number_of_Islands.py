@@ -43,6 +43,7 @@ class Solution1(object):
         self.dfs(grid, r, c + 1)
         self.dfs(grid, r, c - 1)
         return 1
+        
 # iteration DFS
 class Solution2():
     def numIslands(self, grid):

@@ -52,30 +52,38 @@ t:               "ABC"
 import collections
 class Solution2(object):
     def minWindow(self, s, t):
-        slow, fast = 0, 0
-        charMatch = 0
+        """
+        :type s: str
+        :type t: str
+        :rtype: str
+        """
+        l, r, valid, start = 0, 0, 0, 0
         window = {}
-        min_len= float("inf")
-        dic_t = collections.Counter(t)
-        ans = (min_len, slow, fast)
-        for fast in range(len(s)):
-            char = s[fast]
-            window[char] = window.get(char, 0) + 1
-            if window[char] == dic_t[char]:
-                charMatch = charMatch + 1
-
-            while len(dic_t) == charMatch:
-                char = s[slow]
-                if fast - slow + 1 < ans[0]:
-                    ans = (fast - slow + 1, slow, fast)
-                window[char] = window[char] - 1
-                if window[char] < dic_t[char]:
-                    charMatch = charMatch - 1
-                slow = slow + 1
-        return "" if ans[0] == float("inf") else ans[0]
+        min_len = float('inf')
+        dic_need = collections.Counter(t)
+        while r < len(s):
+            char = s[r]
+            r += 1
+            if char in dic_need:
+                window[char] = window.get(char, 0) + 1
+                if window[char] == dic_need[char]:
+                    valid += 1
+            print l, r, valid
+            while valid == len(dic_need):
+                if r - l < min_len:
+                    start = l
+                    min_len = r - l
+                char = s[l]
+                l += 1
+                if char in dic_need:
+                    if window[char] == dic_need[char]:
+                        valid -= 1
+                        window[char] -= 1
+            print l, r, valid
+        return '' if min_len == float('inf') else s[start : start + min_len]
 
 
 
 answer = Solution2()
 print  answer.minWindow("ADOBECODEBANC" ,"ABC")
-
+                     #  "0123456789"
