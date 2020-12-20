@@ -1,0 +1,5 @@
+1. When can use sliding window / two pointers:
+    a. If a wider scope of the sliding window is valid, the narrower scope of that wider scope is valid must hold.
+    b. If a narrower scope of the sliding window is invalid, the wider scope of that narrower scope is invalid must hold.
+    c. negative element unlikely to be able to work
+    https://leetcode.com/problems/subarray-sum-equals-k/discuss/301242/General-summary-of-what-kind-of-problem-can-cannot-solved-by-Two-Pointers
