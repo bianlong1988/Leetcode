@@ -15,7 +15,8 @@ class Solution:
             # pop to maintain deacresing deque
             while dq and A[i] > dq[-1]:
                 dq.pop()
-            # update dq
+            # update dq, negtive value will not be added to dq, 
+            # nums[i] it self will become the new max sum
             if A[i] > 0:
                 dq.append(A[i])
             # popleft if the window is not valid
