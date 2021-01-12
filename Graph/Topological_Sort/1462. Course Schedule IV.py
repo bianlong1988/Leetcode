@@ -17,8 +17,8 @@ class Solution:
         while dq:
             pre = dq.popleft()
             # print (pre, adjDict[pre])
-            for nxt in adjDict[pre]: # 0-> 1 ->[2,3,4]
-                                   #       pre -> nxt
+            for nxt in adjDict[pre]: # adjDict: 0-> 1 ->[2,3,4]  
+                                   # preSet:         pre -> nxt   
                 # set union:  (preSet[nxt]) U (pre's ancestors)
                 preSet[nxt] = preSet[nxt] | preSet[pre]  
                 inDegree[nxt] -= 1
