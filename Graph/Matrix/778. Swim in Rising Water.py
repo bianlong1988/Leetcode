@@ -1,6 +1,6 @@
 class Solution:
     def swimInWater(self, grid: List[List[int]]) -> int:
-        # min path
+        # min path - dijkstra
         # BFS + heap => update the min time at each step
         n = len(grid)
         pq = []
