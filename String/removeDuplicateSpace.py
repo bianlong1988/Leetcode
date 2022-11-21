@@ -35,4 +35,4 @@ def removeDuplicateSpace1(input):
     return res
 
 
-print removeDuplicateSpace1(input)
+print(removeDuplicateSpace1(input))
